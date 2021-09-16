@@ -55,7 +55,7 @@ if [[ -n "$working_directory" ]]; then
   if [[ ! -d "$working_directory" ]]; then
     mkdir -p "$working_directory"
   fi
-  # cd "$working_directory"
+  cd "$working_directory"
 fi
 
 if [[ -n "$pre_compile" ]]; then
@@ -66,6 +66,8 @@ fi
 info "Compile $root_file"
 
 "$engine" "${args[@]}" "$working_directory$root_file"
+
+cd -
 
 if [[ -n "$post_compile" ]]; then
   info "Run post compile commands"
