@@ -1,4 +1,4 @@
-name: Github Action for zh_CN LaTeX
+name: Github Action for LaTeX dtx to cls
 description: GitHub Action to convert zh_CN LaTeX dtx files to cls files
 author: Cheng XU, HermitSun, FengChendian
 inputs:
