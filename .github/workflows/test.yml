@@ -14,29 +14,7 @@ jobs:
         with:
           root_file: test.dtx
           working_directory: test/
-      # https://github.com/xu-cheng/latex-action/issues/16
-      - name: Test Action with Github Default Template
-        uses: ./
-        with:
-          # The root LaTeX file to be compiled
-          root_file: test/test.dtx
-          # The working directory for the LaTeX engine
-          working_directory: # optional
-          # The LaTeX engine to be invoked
-          engine: # optional, default is latexmk
-          # Extra arguments to be passed to the LaTeX engine
-          args: # optional, default is -pdf -file-line-error -halt-on-error -interaction=nonstopmode
-          # [Deprecated] Install extra packages by tlmgr
-          extra_packages: # optional
-          # Install extra packages by apk
-          extra_system_packages: # optional
-          # Arbitrary bash codes to be executed before compiling LaTeX documents
-          pre_compile: # optional
-          # Arbitrary bash codes to be executed after compiling LaTeX documents
-          post_compile: # optional
-          # Instruct latexmk to enable --shell-escape
-          shell_escape: # optional
-      - name: Check pdf files
+      - name: Check cls files
         run: |
           file test/test.cls | grep -q ' text '
       - name: Upload
