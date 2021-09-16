@@ -1,0 +1,2168 @@
+% \iffalse meta-comment
+% !TeX program  = XeLaTeX
+% !TeX encoding = UTF-8
+%
+% Copyright (C) 2021 by Nanjing University Linux User Group <nju.lug@yaoge123.cn>
+% 
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License (LPPL), either version 1.3c of this
+% license or (at your option) any later version.  The latest version
+% of this license is in the file
+%
+%    https://www.latex-project.org/lppl.txt
+%
+% -----------------------------------------------------------------------
+%
+% The development version of the template can be found at
+%
+%    https://github.com/nju-lug/NJUThesis
+%
+% for those people who are interested.
+%
+%<*internal>
+\iffalse
+%</internal>
+%
+%<*readme-zh>
+# NJU Thesis
+
+[![njuthesis](https://img.shields.io/badge/njuthesis-latex-blue)](https://git.nju.edu.cn/nju-lug/nju-latex-templates)
+[![overleaf](https://img.shields.io/badge/overleaf-supported-brightgreen)](https://tex.nju.edu.cn)
+![build status](https://github.com/nju-lug/NJUThesis/actions/workflows/build.yml/badge.svg)
+
+> 此项目是基于[NJU thesis 2021](https://github.com/FengChendian/NJUThesis2021)的重构版本，目前本科生版本**已经基本重构完成**，硕博论文**正在**根据研究生院的文件重构，但研究生院的规定并不完善，因此部分格式可能会参考本科的，**如果院系另有要求，请自行修改或者提交issue**。
+
+原来的[NJU thesis 2021](https://github.com/FengChendian/NJUThesis2021)模板太过古老并且不支持硕士、博士论文，目前难以维护，因此为了模板的可持续发展，现在将对该项目进行重构，项目挂载于[NJU-LUG](https://github.com/nju-lug)组织仓库下，目前已[发布在CTAN](https://ctan.org/pkg/njuthesis)。
+
+相关文档请参见[本项目wiki](https://github.com/nju-lug/NJUThesis/wiki)。
+
+## 快速开始
+
+从0.9.0版以后，本模板以DocStrip(`.dtx`)格式进行维护，同时在仓库提供`.cls`文件以降低使用门槛。
+
+### 如何使用DocStrip文件
+
+DocStrip合并了LaTeX源代码和文档，更有利于宏包的发布。要使用该文件，请在当前工作目录下打开终端：
+
+- 输入`xetex njuthesis.dtx`以解出宏包内容
+- 输入`latexmk njuthesis.dtx`以生成并查看内置的文档
+
+请注意，由于文件重名原因，项目中的示例论文模板已被重命名为`njuthesis-sample.tex`。
+
+### 本地编译
+
+1. 推荐[从南大镜像站下载](https://mirror.nju.edu.cn/download/app/TeX%20%E6%8E%92%E7%89%88%E7%B3%BB%E7%BB%9F)并安装TeXLive或者MiKTeX最新版
+2. 从release下载包含[模板全部文件](https://github.com/nju-lug/NJUThesis/releases/latest)的压缩包
+3. 根据需要更改`njuthesis-sample.tex`文件中的内容
+4. 在模板根目录下运行`latexmk -xelatex`编译文件，得到对应的PDF
+
+#### **关于本地编译**
+
+- 模板支持`latexmk`、`xelatex`、`lualatex`三种编译方式
+- 如果使用`latexmk`，请务必使用完整的命令`latexmk -xelatex`以免产生不必要的问题
+- 如果使用`xelatex`或`lualatex`，需要按照`xelatex/lualatex` -> `biber` -> `xelatex/lualatex` -> `xelatex/lualatex`的顺序编译四次
+- 仓库中`.vscode`附带一份VScode的LaTeX WorkShop的配置文件，可根据需要使用
+
+### [南大TeX](https://tex.nju.edu.cn)编译
+
+1. 从release下载包含[模板全部文件](https://github.com/nju-lug/NJUThesis/releases/latest)的`njuthesis.zip`
+2. 登录[南大TeX](https://tex.nju.edu.cn)，点击New Project -> Upload Project上传刚刚得到的压缩包，上传后`njuthesis-sample.tex`、`njuthesis.cls`等文件应在根目录，0.9.0以后的目录结构如下所示：
+
+    ```shell
+    NJUThesis-master/
+    │
+    ├─figure/
+    │   njulogo.pdf
+    │   njuname.pdf
+    │
+    │ njuthesis.bib
+    │ njuthesis.cls
+    │ njuthesis-sample.tex
+    ```
+
+3. 在南大TeX项目内页面左上角的`Menu`中，将编译器改为`XeLaTeX`
+4. 编写TeX文档
+
+### 其他
+
+更多内容请参见项目Wiki中的[使用说明](https://github.com/nju-lug/NJUThesis/wiki/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
+
+你也可以下载[Release](https://github.com/nju-lug/NJUThesis/releases/latest)中附带的`njuthesis.pdf`，里面详尽阐述了模板的特性和使用方法。
+
+## 常见问题
+
+请参见[常见问题](https://github.com/nju-lug/NJUThesis/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)。
+
+## 贡献
+
+如果你发现了模板的问题，欢迎在Github中[提交issue](https://github.com/nju-lug/NJUThesis/issues)或者PR。
+
+## 许可
+
+本模板的发布遵守 LaTeX Project Public License（版本 1.3c 或更高）。
+%</readme-zh>
+%
+%<*readme-en>
+# NJU Thesis
+
+## Overview
+
+This is A LaTex Template for Nanjing University Thesis. This template supports bachelor, master, and doctoral thesis. The Template needs `xelatex` or `lualatex`.
+
+## License
+
+-----
+    This work may be distributed and/or modified under the conditions of
+    the [LaTeX Project Public License](http://www.latex-project.org/lppl.txt),
+    either version 1.3c of this license or (at your option) any later
+    version.
+-----
+
+## Contributing
+
+If you find a problem with the template, please submit an issue or PR in Github
+
+## Wiki
+
+Please see [Chinese wiki](https://github.com/nju-lug/NJUThesis/wiki)。
+
+-----
+
+Copyright © NJU-LUG
+%</readme-en>
+%
+%<*internal>
+\fi
+\begingroup
+  \def\NameOfLaTeXe{LaTeX2e}
+\expandafter\endgroup\ifx\NameOfLaTeXe\fmtname\else
+\csname fi\endcsname
+%</internal>
+%
+%<*install>
+\input l3docstrip.tex
+\keepsilent
+\askforoverwritefalse
+
+\preamble
+
+Copyright (C) 2021 by Nanjing University Linux User Group <nju.lug@yaoge123.cn>
+
+This file may be distributed and/or modified under the conditions of
+the LaTeX Project Public License, either version 1.3 of this license
+or (at your option) any later version.  The latest version of this
+license is in:
+
+   http://www.latex-project.org/lppl.txt
+
+and version 1.3 or later is part of all distributions of LaTeX version
+2005/12/01 or later.
+
+To produce the documentation run the original source files ending with `.dtx'
+through XeTeX.
+    
+\endpreamble
+
+\generate{
+  \usedir{tex/latex/njuthesis}
+    \file{\jobname.cls}        {\from{\jobname.dtx}{class}}
+%</install>
+%<*internal>
+  \usedir{source/latex/njuthesis}
+    \file{\jobname.ins}        {\from{\jobname.dtx}{install}}
+%</internal>
+%<*install>
+  \usedir{doc/latex/njuthesis}
+  \nopreamble\nopostamble
+    \file{README_EN.md}        {\from{\jobname.dtx}{readme-en}}
+    \file{README.md}           {\from{\jobname.dtx}{readme-zh}}
+}
+
+\obeyspaces
+\Msg{*************************************************************}
+\Msg{*                                                           *}
+\Msg{* To finish the installation you have to move the following *}
+\Msg{* files into a directory searched by TeX:                   *}
+\Msg{*                                                           *}
+\Msg{* The recommended directory is TDS:tex/latex/njuthesis      *}
+\Msg{*                                                           *}
+\Msg{*     njuthesis.cls                                         *}
+\Msg{*     njuthesis.ins                                         *}
+\Msg{*     README.md                                             *}
+\Msg{*     README_EN.md                                          *}
+\Msg{*                                                           *}
+\Msg{* To produce the documentation, run the file njuthesis.dtx  *}
+\Msg{* through XeLaTeX.                                          *}
+\Msg{*                                                           *}
+\Msg{* Happy TeXing!                                             *}
+\Msg{*                                                           *}
+\Msg{*************************************************************}
+
+\endbatchfile
+%</install>
+%
+%<*internal>
+\fi
+%</internal>
+%
+%<class>\NeedsTeXFormat{LaTeX2e}
+%<class>\RequirePackage{expl3}
+%<!(readme-zh|readme-en)> \GetIdInfo  $Id: njuthesis.dtx 0.9.0 2021-09-15 12:00:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
+%<class>  {Thesis template for Nanjing University}
+%<class>\ProvidesExplClass{\ExplFileName}{\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+%
+%<*driver>
+\ProvidesFile{njuthesis.dtx}
+\documentclass{ctxdoc}
+\usepackage{listings,xcolor}
+\definecolor{njuviolet}{cmyk}{0.5,1,0,0.4}
+\definecolor{njumagenta}{cmyk}{0.05,1,0.55,0}
+\definecolor{njublue}{cmyk}{0.8,0.5,0,0}
+\definecolor{njuyellow}{cmyk}{0,0.3,1,0}
+\begin{document}
+  \DocInput{njuthesis.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \title{\color{njuviolet} The \textsc{NJuThesis} class\\ 南京大学学位论文模板}
+% 
+% \author{^^A
+% Nanjing University Linux User Group\thanks{E-mail: \href{mailto:nju.lug@yaoge123.cn}{nju.lug@yaoge123.cn}}}
+%
+% \date{v0.9.0 \\ Released 2021-09-15}
+%
+% \maketitle
+%
+% \begin{abstract}
+% 南京大学学位论文\hologo{LaTeX}模板基于本科生院的论文撰写规范制作，同时参考研究生院提供的硕士、博士学位材料包，用于生成符合南京大学学位论文排版要求和相应的国家规范、行业标准的学位论文，旨在为同学提供毕业论文书写的方便。
+% \end{abstract}
+%
+% \def\abstractname{特别声明}
+% \begin{abstract}
+% 请注意，本模板仍未完成开发，出现bug或者文档不完善属于正常情况，提issue即可。
+% \end{abstract}
+%
+% \clearpage
+%
+% \tableofcontents
+%
+% \EnableDocumentation
+%^^A \DisableDocumentation
+% 
+% \begin{documentation}
+%
+%
+% \section{模板介绍}
+%
+% \section{贡献者}
+% \label{sec:contributors}
+%
+% Put text here.
+%
+% \section{安装}
+% \label{sec:setup}
+%
+% 本节主要介绍本宏包的获取、安装以及编译方式
+%
+% 下表是目前经过测试的环境。如果有其他可用不可用的环境，欢迎补充。
+%
+% \begin{table}[ht]
+%     \centering
+%     \caption{经过测试的环境}
+%     % \label{tab:1}
+%     \begin{tabular}{ccc}
+%         \toprule
+%         OS & TeX & 测试情况 \\
+%         \midrule
+%         Windows 10 & \hologo{TeX}\,Live 2021 & 通过 \\
+%         Windows 10 & \hologo{MiKTeX} & 通过 \\
+%         Windows 10 & \hologo{TeX}\,Live 2020 & cref存在格式问题  \\
+%         macOS 10.15 & \hologo{TeX}\,Live 2021 & 通过 \\
+%         Ubuntu 20.04 & \hologo{TeX}\,Live 2021 & 通过 \\
+%         南大\hologo{TeX} & \hologo{TeX}\,Live 2021 & 通过 \\
+%         Overleaf & \hologo{TeX}\,Live 2020 & cref存在格式问题  \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+%
+% \subsection{本地编译}
+%
+% \subsubsection{安装\hologo{TeX}发行版}
+%
+% 首先需要下载\hologo{TeX}软件发行版，校园网环境中使用\href{https://mirror.nju.edu.cn/download/app/TeX%20%E6%8E%92%E7%89%88%E7%B3%BB%E7%BB%9F}{南大镜像站}可以获得最好的体验。\textbf{推荐使用最新的\hologo{TeX}\,Live 2021或者\hologo{MiKTeX} 21以避免潜在的兼容性问题。}
+%
+% \begin{itemize}
+%     \item 为了避免不必要的麻烦，请尽可能下载 full 版本，如 texlive-full。简而言之，下载大的那个。
+%     \item 并且，尽可能使用最新版（截至目前是 2021）。2020 及之前版本使用 PDF 格式的图片可能会出现加粗问题。
+% \end{itemize}
+%
+% \subsubsection{选择编辑器}
+%
+% 配置完编译器后，还需要一个\textbf{文本编辑器}作为前端来完成\texttt{.tex}文件内容的写作。
+%
+% 至今仍有相当一部分人认为Windows自带的\textit{记事本}是最好的文本编辑器，但对于本项目而言，在此诚心诚意地推荐你使用\textbf{更现代更美观更多功能}的编辑器，譬如\emph{安装了 LaTeX Workshop 插件 的 \href{https://code.visualstudio.com/}{Visual Studio Code}}，来完成论文编写。你也可以根据个人的喜好随便使用其他编辑器，如 TeXworks、TeX Studio 等，顺手就行。
+%
+% 若使用 LaTeX Workshop 插件，本项目在|.vscode/|中提供一份简易配置，可以省略初始配置步骤直接使用。
+%
+% \subsubsection{编译顺序}
+% 假设即将使用的文件名为\file{mynjuthesis.tex}
+% 应采用以下命令顺序进行编译，以生成正确的目录、编号和参考文献条目。
+% \begin{lstlisting}
+%   xelatex mynjuthesis
+%   biber mynjuthesis
+%   xelatex mynjuthesis
+%   xelatex mynjuthesis
+% \end{lstlisting}
+% 使用 \pkg{latexmk}
+% \begin{lstlisting}
+%   latexmk -xelatex mynjuthesis
+% \end{lstlisting}
+%
+% \begin{lstlisting}
+%   lualatex mynjuthesis
+%   biber mynjuthesis
+%   lualatex mynjuthesis
+%   lualatex mynjuthesis
+% \end{lstlisting}
+% 使用 \pkg{latexmk}
+% \begin{lstlisting}
+%   latexmk -lualatex mynjuthesis
+% \end{lstlisting}
+%
+% 编译产物为\file{njuthesis.pdf}，位于主目录下。此外还会生成一系列中间文件，可以选择使用以下命令进行清理。
+%
+% \begin{lstlisting}
+%   latexmk -c
+% \end{lstlisting}
+%
+% \subsection{在线编译}
+%
+% 相信你在接触了本地编译以后，很快就会意识到一些十分显然的事实，譬如\hologo{TeX}编译器安装过程较为漫长，占用空间过大，而且在一部分处理器性能不佳的电脑上需要较长编译时间\footnote{其实这三点都是对广大的Windows用户说的，同一个模板在Linux编译可以节省一半耗时}。拒绝接受这些麻烦的同学不妨尝试本节介绍的在线编译方法。
+%
+% \subsubsection{南大\hologo{TeX}平台简介}
+%
+% \href{https://tex.nju.edu.cn}{南大\hologo{TeX}}基于开源的ShareLaTeX平台\footnote{理论上在\href{https://doc.nju.edu.cn/books/latex}{这个网站}能找到一段平台简介，实际上大家都有意无意地鸽了，下次一定补上。}，于2021年3月4日正式上线，面向南京大学全体师生开放，首次使用需凭学校邮箱自助注册账号。
+%
+% \subsubsection{操作步骤}
+%
+% \begin{enumerate}
+%     \item 下载\href{https://github.com/nju-lug/NJUThesisUndergraduate/archive/refs/heads/master.zip}{模板全部文件}
+%     \item 访问\href{https://tex.nju.edu.cn}{南大\hologo{TeX}}，点击界面右上方Register，使用\emph{南京大学邮箱}注册账号并登录
+%     \item 点击New Project -> Upload Project上传刚刚得到的zip文件，上传后njuthesis.tex、njuthesis.cls等文件应在根目录，目录结构如{{sec:directory}}所示
+%     \item 在项目页面左上角的Menu中，将编译器改为\hologo{XeLaTeX}或者\hologo{LuaLaTeX}
+%     \item 编写论文
+%     \item 点击Compile按钮进行编译和预览
+%     \item 点击编译按钮右侧第三个按钮下载产物
+% \end{enumerate}
+%
+% \subsubsection{关于Overleaf平台}
+%
+% 由于\href{https://www.overleaf.com/}{Overleaf平台}的\hologo{TeX}\,Live版本停留在2020，\texttt{cleveref}包在引用章节时会生成错误的标签，引发格式错误；而南大\hologo{TeX}通过及时更新规避了这一问题。因此\emph{请务必不要使用Overleaf官网进行编译}。
+%
+%
+%
+% \section{使用方法}
+%
+% \subsection{自定义选项}
+%
+% 尖括号内列出了若干个允许的选项，其中加粗的为默认选项
+%
+% 封面留空即可自动化换行
+%
+% 第二导师不填则留空。由于目前来说拥有两位指导老师并不是一种普遍状况，因此此项默认为\opt{false}。
+%
+% \begin{function}[added=2021-09-07]{nlcover}
+%   \begin{syntax}
+%     nlcover = <\TTF>
+%   \end{syntax}
+%
+% 通过此项可选择是否添加国家图书馆封面，本选项仅对于研究生有效
+% \end{function}
+%
+% 
+% \subsubsection{学位信息}
+% \begin{function}[added=2021-09-07]{degree}
+%   \begin{syntax}
+%     degree = <(ug)|mg|mf|phd>
+%   \end{syntax}
+%
+% 选择学位，可选：
+% \opt{ug}（默认本科），\opt{mg}即学术硕士，\opt{mf}，\opt{phd}。
+% \end{function}
+%   
+%
+% \begin{function}[added=2021-09-07]{type}
+%   \begin{syntax}
+%     type = <(thesis)|design>
+%   \end{syntax}
+%
+% 用于选择文档类型并将相关字段输出在封面和摘要页。可选值包括thesis（表示毕业论文）和design（表示毕业设计），缺省值为thesis。
+% \opt{thesis}（默认），\opt{design}。
+% \end{function}
+%   
+%
+%
+% \subsubsection{指定字体}
+%
+%
+% 学校论文格式要求使用的字体一般已经预装在各个操作系统，本模板针对不同平台进行了自动检测适配，可以开箱即用。
+%
+% 如果希望更改本模板使用的字体，请填写以下两个选项
+% 
+%
+% \begin{function}[added=2021-09-07]{customlatinfont}
+%   \begin{syntax}
+%     customlatinfont = <(windows)|macos|gyre|null>
+%   \end{syntax}
+%
+% 手动指定英文字体，可选：
+% \opt{windows}（默认）， \opt{macos}， \opt{gyre}， \opt{null}。
+% \end{function}
+%
+% 
+% \begin{function}[added=2021-09-07]{customchinesefont}
+%   \begin{syntax}
+%     customchinesefont = <(windows)|macos|fandol|founder|noto|null>
+%   \end{syntax}
+%
+% 手动指定中文字体，可选：
+% \opt{windows}（默认）， \opt{macos}， \opt{fandol}， \opt{founder}，\opt{noto}，\opt{null}。
+%
+% 方正字体（简繁扩展）系列
+% FZSSK \href{http://www.foundertype.com/index.php/FontInfo/index/id/151}{方正书宋} 免费商用
+%
+% FZXBSK \href{http://www.foundertype.com/index.php/FontInfo/index/id/164}{方正小标宋} 设计师非商免费
+%
+% FZKTK \href{http://www.foundertype.com/index.php/FontInfo/index/id/137}{方正楷体} 免费商用
+%
+% FZXH1K \href{http://www.foundertype.com/index.php/FontInfo/index/id/161}{方正细黑一} 设计师非商免费
+%
+% FZHTK  \href{http://www.foundertype.com/index.php/FontInfo/index/id/131}{方正黑体} 免费商用
+%
+% FZFSK  \href{http://www.foundertype.com/index.php/FontInfo/index/id/128}{方正仿宋}
+%
+% FZYouHK_508R  \href{http://www.foundertype.com/index.php/FontInfo/index/id/244}{方正悠黑508R} 设计师非商免费
+%
+% FZYouHK_511M \href{http://www.foundertype.com/index.php/FontInfo/index/id/244}{方正悠黑511M} 设计师非商免费
+%
+% 思源字体\footnote{思源宋体和思源黑体有两种英文命名，本模板采用Google的noto系列}：
+%  \href{https://www.google.com/get/noto/#serif-hans}{思源宋体}、
+%  \href{https://www.google.com/get/noto/#sans-hans}{思源黑体}
+% 
+%
+% 
+% 方正楷体、方正仿宋为免费商用字体，且支持CJK字符集
+%  \href{http://www.foundertype.com/index.php/FontInfo/index/id/128.html}{方正仿宋}
+%  \href{http://www.foundertype.com/index.php/FontInfo/index/id/137.html}{方正楷体}
+%
+% 各个系统的默认字体请参考。可以看到，不同系统上使用的字体有所差别，实际输出结果可能存在细微不同, 使用时请注意。例如，在Linux平台或者使用了Ubuntu后端的南大\hologo{TeX}上，宋体加粗效果更明显；另一方面，在Windows平台进行编译的效果更接近Word加粗\footnote{因为SimSun没有原生粗体，通过AutoFakeBold=2.17进行模仿}，符合视觉习惯。
+% 
+% \end{function}
+%
+%
+% \subsection{封面信息}
+%
+% \subsection{输入个人信息}
+%
+% \begin{function}{\njusetup}
+% 
+%  定义了用于文档封面的诸多属性参数，
+% 写作时修改相应字符串即可。注意不要有空行，否则可能报错
+%
+% \end{function}
+%
+%
+% \subsubsection{论文标题}
+% \begin{description}
+%     \item[\texttt{TitleA}] 单行标题，或多行标题的第一行。关于是否应该折行，单行能容纳的最长标题为\emph{15个中文字符}，请自行选择合适的截断处。
+%     \item[\texttt{TitleB}] 多行标题的第二行
+%     \item[\texttt{TitleC}] 多行标题的第三行
+%     \item[\texttt{Title*}] 英文标题，注意空格要用波浪线（\textasciitilde）替代
+% \end{description}
+%
+% \subsubsection{个人年级、学号、姓名}
+% \begin{description}
+%     \item[\texttt{Grade}] 年级
+%     \item[\texttt{StudentID}] 本科生为9位数字学号，研究生为两位英文字母标识加8位数字学号，两位字母自动大写
+%     \item[\texttt{StudentName}] 姓名
+%     \item[\texttt{StudentName*}] 姓名拼音 
+% \end{description}
+%
+% \subsubsection{就读院系专业}
+%
+% 本科生无需填写研究方向。
+% \begin{description}
+%     \item[\texttt{Department}] 学院名称
+%     \item[\texttt{Department*}] 学院英文名称
+%     \item[\texttt{Major}] 专业名称
+%     \item[\texttt{Major*}] 专业英文名称
+%     \item[\texttt{Field}] 研究方向
+%     \item[\texttt{Field*}] 研究方向英文名称
+% \end{description}
+%
+% \subsubsection{导师信息}
+% 注意标注A的为第一导师
+% \begin{description}
+%     \item[\texttt{Supervisor<A/B>}] 导师姓名
+%     \item[\texttt{Supervisor<A/B>*}] 导师姓名的英文拼音  
+%     \item[\texttt{Supervisor<A/B>Title}] 导师职称
+%     \item[\texttt{Supervisor<A/B>Title*}] 导师职称英文
+% \end{description}
+%
+% \subsubsection{提交日期}
+% \begin{description}
+%     \item[\texttt{SubmitDate}] 论文提交日期
+% \end{description}
+%
+% \subsubsection{答辩信息}
+%
+% 除答辩日期以外，本部分内容仅用于国家图书馆封面。本科生忽略即可。
+% 答辩委员会姓名与职称之间需使用波浪线连接。
+%
+% \begin{description}
+%     \item[\texttt{DefendDate}] 答辩日期
+%     \item[\texttt{ReviewerChairman}] 答辩委员会主席的姓名及职称 
+%     \item[\texttt{Reviewer<A/B/C/D>}] 四位评阅人的姓名及职称  
+% \end{description}
+%
+% \subsubsection{国家图书馆封面相关信息}
+%
+% 本部分内容仅用于国家图书馆封面。本科生忽略即可。
+%
+% \begin{description}
+%     \item[\texttt{Classification}] 分类号
+%     \item[\texttt{SecurityLevel}] 限制  
+%     \item[\texttt{UDC}] UDC
+%     \item[\texttt{SupervisorContact}] 指导教师职务、职称、学位、单位名称及地址
+% \end{description}
+%
+% \subsection{摘要页}
+%
+% 摘要页一般不插入目录，默认只添加pdf书签。如确实有插入目录的需求，请在\texttt{abstract.sty}文件中定位到如下语句
+%
+% 在使用\hologo{LuaLaTeX}编译时，研究生中文摘要页的标题会出现空格无下划线的问题，目前正在积极寻求解决方法。
+%
+% {前言页}
+% 使用preface环境定义
+%
+%
+% \subsection{正文格式}
+%
+% 本科生无页眉，页面编号居中位于页脚；研究生无页脚，页眉包括章节名和页面编号。
+%
+% 
+% 对中文加下划线请使用xeCJKfntef包的CJKunderline命令代替uline，以解决中文的换行问题
+%
+% {参考文献页}
+%
+% 需要使用biber手动编译才会显示，具体内容参考
+%
+% {致谢页}
+% 同前言，使用acknowledgement环境
+% 
+% {附录页}
+%
+% 附录放在|\appendix|命令后，以英文字母进行编号
+%
+% \end{documentation}
+%
+% \begin{implementation}
+%
+% \section{代码实现}
+% @@在l3docstrip中表示名空间，在生成cls时会被相应字段替换，譬如在njuthesis中@@=nju
+%
+%    \begin{macrocode}
+%<@@=nju>
+%<*class>
+\LoadClass[
+  a4paper,
+  twoside,
+  UTF8,
+  scheme=chinese,
+%    \end{macrocode}
+%
+% 关于行距，\hologo{LaTeX}默认1.2行距，word默认行距是1.3，要求1.5倍word行距，故
+% \[ 1.5\times\frac{1.3}{1.2} = 1.625\]
+%    \begin{macrocode}
+  linespread=1.625,
+  fontset=none,
+  zihao=-4
+  ]{ctexbook}[2018/04/01]
+%    \end{macrocode}
+%
+% 是否需要国家图书馆封面的设置
+%    \begin{macrocode}
+\RequirePackage{l3keys2e}
+%    \end{macrocode}
+% 用于存储学位名称的全局变量，注意宏的命名，l代表局部变量，g代表全局变量
+%    \begin{macrocode}
+\tl_new:N \l_@@_info_degree_tl
+\tl_new:N \l_@@_info_type_tl
+%    \end{macrocode}
+%
+% 是否需要国家图书馆封面的设置
+%    \begin{macrocode}
+\keys_define:nn { nju }
+{
+  nlcover           .bool_set:N   =   \nju_nl_cover,
+  nlcover           .initial:n    =   false,
+}
+%    \end{macrocode}
+%
+% 学位信息的设置
+%    \begin{macrocode}
+\keys_define:nn { nju }
+{
+  degree            .choices:nn   =
+  { ug, mg, mg, phd }
+  { \tl_set_eq:NN \l_@@_info_degree_tl \l_keys_choice_tl },  
+  type              .choices:nn   =
+  { thesis, design }
+  { \tl_set_eq:NN \l_@@_info_type_tl   \l_keys_choice_tl }, 
+}
+%    \end{macrocode}
+% 
+% \subsection{个人信息}
+% 输入
+%    \begin{macrocode}
+\keys_define:nn { nju }
+{
+  info.meta:nn = { nju / info } { #1 }
+}
+%    \end{macrocode}
+%
+% 题目
+%    \begin{macrocode}
+\keys_define:nn { nju / info }
+{
+  TitleA            .tl_set:N     =   \l_@@_info_title_a_tl,
+  TitleB            .tl_set:N     =   \l_@@_info_title_b_tl,
+  TitleC            .tl_set:N     =   \l_@@_info_title_c_tl,
+  Title*            .tl_set:N     =   \l_@@_info_title_en_tl,
+}
+%    \end{macrocode}
+%
+% 年级、学号、姓名
+%    \begin{macrocode}
+\keys_define:nn { nju / info }
+{
+  Grade             .tl_set:N     =   \l_@@_info_grade_tl,
+  StudentID         .tl_set:N     =   \l_@@_info_id_tl,
+  StudentName       .tl_set:N     =   \l_@@_info_author_tl,
+  StudentName*      .tl_set:N     =   \l_@@_info_author_en_tl,
+}
+%    \end{macrocode}
+%
+% 院系、专业、方向
+%    \begin{macrocode}
+\keys_define:nn { nju / info }
+{
+  Department        .tl_set:N     =   \l_@@_info_dept_tl,
+  Department*       .tl_set:N     =   \l_@@_info_dept_en_tl,
+  Major             .tl_set:N     =   \l_@@_major_tl,
+  Major*            .tl_set:N     =   \l_@@_major_en_tl,
+  Field             .tl_set:N     =   \l_@@_field_tl,
+  Field*            .tl_set:N     =   \l_@@_field_en_tl,
+}
+%    \end{macrocode}
+%  
+% 导师
+% 
+%    \begin{macrocode}
+\keys_define:nn { nju / info }
+{
+  SupervisorA       .tl_set:N     =   \l_@@_info_supv_a_tl,
+  SupervisorA*      .tl_set:N     =   \l_@@_info_supv_a_en_tl,
+  SupervisorATitle  .tl_set:N     =   \l_@@_info_supv_a_title_tl,
+  SupervisorATitle* .tl_set:N     =   \l_@@_info_supv_a_title_en_tl,
+}
+%    \end{macrocode}
+%
+% 第二导师
+%
+%    \begin{macrocode}
+\keys_define:nn { nju / info }
+{
+  SupervisorB       .tl_set:N     =   \l_@@_info_supv_b_tl,
+  SupervisorB*      .tl_set:N     =   \l_@@_info_supv_b_en_tl,
+  SupervisorBTitle  .tl_set:N     =   \l_@@_info_supv_b_title_tl,
+  SupervisorBTitle* .tl_set:N     =   \l_@@_info_supv_b_title_en_tl,
+}
+%    \end{macrocode}
+%
+% 提交日期
+%    \begin{macrocode}
+\keys_define:nn { nju / info }
+{
+  SubmitDate        .tl_set:N     =   \l_@@_submit_date_tl,
+}
+%    \end{macrocode}
+%
+% 答辩
+%    \begin{macrocode}
+\keys_define:nn { nju / info }
+{
+  DefendDate        .tl_set:N     =   \l_@@_defend_date_tl,
+  ReviewerChairman  .tl_set:N     =   \l_@@_info_chairman_tl,
+  ReviewerA         .tl_set:N     =   \l_@@_info_reviewer_a_tl,
+  ReviewerB         .tl_set:N     =   \l_@@_info_reviewer_b_tl,
+  ReviewerC         .tl_set:N     =   \l_@@_info_reviewer_c_tl,
+  ReviewerD         .tl_set:N     =   \l_@@_info_reviewer_d_tl,
+}
+%    \end{macrocode}
+%
+% 国家图书馆封面相关
+%    \begin{macrocode}
+\keys_define:nn { nju / info }
+{
+  Classification    .tl_set:N     =   \l_@@_info_classif_tl,
+  SecurityLevel     .tl_set:N     =   \l_@@_info_seclv_tl,
+  UDC               .tl_set:N     =   \l_@@_info_udc_tl,
+  SupervisorContact .tl_set:N     =   \l_@@_info_supv_cont_tl,
+}
+%    \end{macrocode}
+% 定义用于设置个人信息的命令
+%    \begin{macrocode}
+\NewDocumentCommand \njusetup { m }
+{ \keys_set:nn { nju } { #1 } }
+%    \end{macrocode}
+%
+% 设置页边距
+%    \begin{macrocode}
+\RequirePackage[    
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3.2cm,
+    right=3.2cm
+]{geometry}
+%    \end{macrocode}
+%
+% mandatory and optional arguments are, and so forth.
+%    \begin{macrocode}
+\RequirePackage{xparse}
+\RequirePackage{titletoc} % 修改目录内标题格式
+\RequirePackage[hyphens]{url} % generate better linebreaks in the url
+% \RequirePackage[normalem]{ulem} % 绘制下划线
+\RequirePackage{dashundergaps}
+\RequirePackage{setspace}
+\RequirePackage{lastpage}
+\RequirePackage{emptypage} % 清除空白页的页码
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+\RequirePackage{listings} % 代码环境
+\RequirePackage{enumitem} % 用于修改列表环境
+\RequirePackage{caption}
+\RequirePackage{floatrow} % 用于图表等页面元素的定位
+\RequirePackage{booktabs} % 用于绘制三线表
+\RequirePackage{multirow} % Cells occupying multiple rows in tables
+\RequirePackage{multicol} % Multiple columns in dictionary
+\RequirePackage{siunitx} % 用于书写单位符号
+%    \end{macrocode}
+%
+% 用于化学
+%    \begin{macrocode}
+\RequirePackage[version=4]{mhchem} % 用于绘制分子式
+%    \end{macrocode}
+%
+% 用于生成可以被插入书签的LaTeX logo，TODO 使用hologo创建|latex{}|命令
+%    \begin{macrocode}
+\RequirePackage{hologo} 
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% Required to prevent page break right after a sectioning command
+% \RequirePackage{needspace} 
+
+% \RequirePackage{xspace} % Better print trailing whitespace
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+\sys_if_engine_xetex:T
+{
+    \RequirePackage{microtype}
+
+    % 加中文下划线，不能用于lualatex
+    \RequirePackage{xeCJKfntef} 
+    \cs_new:Npn \nju_underline:n #1 {\CJKunderline{#1}}
+}
+\sys_if_engine_luatex:T{
+    % 加中文下划线
+    \RequirePackage{lua-ul}
+    \cs_new:Npn \nju_underline:n #1 {\underLine{#1}}
+
+    % emoji支持
+    % \RequirePackage{emoji}
+    % \setemojifont{Segoe~UI~Emoji} % windows
+    % \setemojifont{Apple~Color~Emoji} % macos
+    % \setemojifont{Noto~Color~Emoji}
+    % For windows. 
+    % Shipped with the best `grinning-face-with-sweat' support.
+}
+%    \end{macrocode}
+%
+% 生成用于测试的大段无意义英文文字
+%    \begin{macrocode}
+\RequirePackage{blindtext} 
+\RequirePackage{zhlipsum} 
+%    \end{macrocode}
+%
+% 加载以后展示内容边界
+%    \begin{macrocode}
+% \RequirePackage{showframe} 
+%    \end{macrocode}
+%
+% 数学
+%    \begin{macrocode}
+\RequirePackage{amsmath} % Must be loaded before unicode-math
+\RequirePackage{amsthm} % Mathematical environments
+\RequirePackage{mathtools} % Mathematical tools to use with amsmath
+\RequirePackage{thmtools} % Theorem styles
+\RequirePackage[
+    warnings-off={% 消除与mathtools合用产生的警告
+        mathtools-colon,
+        mathtools-overbracket}
+        ]{unicode-math} % Math fonts in xetex or luatex
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.eps,.jpg,.png}
+\graphicspath{{figure/}} % 图片路径
+\RequirePackage{wrapfig} % Wrap text around figures
+%    \end{macrocode}
+%
+% 必须以该顺序加载以下三个包
+%    \begin{macrocode}
+% \RequirePackage{varioref}
+\RequirePackage[hidelinks,bookmarksnumbered=true]{hyperref}
+\RequirePackage[capitalise,nameinlink,noabbrev]{cleveref}
+%    \end{macrocode}
+%
+% \subsection{字体设置}
+%
+% 加载设置字体所需的包\pkg{fontspec}
+%    \begin{macrocode}
+\RequirePackage{fontspec}
+%    \end{macrocode}
+%
+% 
+%
+% \begin{variable}{\g_@@_latin_fontset_tl,\g_@@_cjk_fontset_tl}
+% 用于存储所使用字体名称的全局变量
+%    \begin{macrocode}
+\tl_new:N \g_@@_latin_fontset_tl
+\tl_new:N \g_@@_cjk_fontset_tl
+%    \end{macrocode}
+% \end{variable}
+%
+% 定义字体选项
+%    \begin{macrocode}
+\keys_define:nn { nju }
+{
+  customlatinfont   .choices:nn   =
+  { gyre, macos, windows, null }
+  { \tl_set_eq:NN \g_@@_latin_fontset_tl \l_keys_choice_tl },  
+  customchinesefont .choices:nn   =
+  { fandol, founder, macos, noto, windows, null }
+  { \tl_set_eq:NN \g_@@_cjk_fontset_tl   \l_keys_choice_tl },
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\ProcessKeysOptions}
+% 在定义完全部设置以后从tex文件导言区输入参数
+%    \begin{macrocode}
+\ProcessKeysOptions { nju }
+%    \end{macrocode}
+% \end{macro}
+%
+% 如果未进行设置则使用系统默认字体覆盖输入参数
+%
+% \begin{variable}{\g_@@_load_system_fontset_tl}
+% 用于判断是否需要载入系统预装字体的全局变量
+%    \begin{macrocode}
+\bool_new:N \g_@@_load_system_fontset_tl
+%    \end{macrocode}
+% \end{variable}
+%
+% 判断用户是否自定义了中英文字体，如果其中任意一种未被定义，
+% 则使用系统预装字体覆盖字体选项
+%    \begin{macrocode}
+\tl_if_empty:NTF \g_@@_latin_fontset_tl
+  { \bool_gset_true:N \g_@@_load_system_fontset_tl }  
+{  
+  \tl_if_empty:NT \g_@@_cjk_fontset_tl
+    { \bool_gset_true:N \g_@@_load_system_fontset_tl }  
+}
+\bool_if:NT \g_@@_load_system_fontset_tl
+{
+  % 检测是否是 Windows
+  \sys_if_platform_windows:TF
+  {
+    \tl_set:Nn \g_@@_latin_fontset_tl { windows }
+    \tl_set:Nn \g_@@_cjk_fontset_tl   { windows }
+  }
+  {
+    % 检测是否是 macOS
+    \ctex_if_platform_macos:TF
+    {
+      \tl_set:Nn \g_@@_latin_fontset_tl { macos }
+      \tl_set:Nn \g_@@_cjk_fontset_tl   { macos }
+    }
+    % 其余系统一律使用自由字体
+    {
+      \tl_set:Nn \g_@@_latin_fontset_tl { gyre }
+      \tl_set:Nn \g_@@_cjk_fontset_tl { fandol }
+    }
+  }
+}
+%    \end{macrocode}
+%
+% 接下来逐个定义所需要使用的字符集
+%
+% \begin{macro}{\@@_load_latin_font_windows:}
+% Windows 西文字体
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_latin_font_windows:
+{
+  \setmainfont{Times~New~Roman}
+  \setsansfont{Arial}
+  \setmonofont{Courier~New}[Scale=MatchLowercase]
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@@_load_latin_font_macos:}
+% macOS 西文字体
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_latin_font_macos:
+{
+\setmainfont{Times~New~Roman}
+\setsansfont{Arial}
+\setmonofont{Menlo}[Scale=MatchLowercase]
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@@_load_latin_font_gyre:}
+% 开源的 gyre 西文字体
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_latin_font_gyre:
+{
+\setmainfont{texgyretermes}[
+  Extension=.otf,
+  UprightFont=*-regular,
+  BoldFont=*-bold,
+  ItalicFont=*-italic,
+  BoldItalicFont=*-bolditalic]
+\setsansfont{texgyreheros}[
+  Extension=.otf,
+  UprightFont=*-regular,
+  BoldFont=*-bold,
+  ItalicFont=*-italic,
+  BoldItalicFont=*-bolditalic]
+\setmonofont{texgyrecursor}[
+  Extension=.otf,
+  UprightFont=*-regular,
+  BoldFont=*-bold,
+  ItalicFont=*-italic,
+  BoldItalicFont=*-bolditalic,
+  Scale=MatchLowercase,
+  Ligatures=CommonOff]
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_load_cjk_font_windows:}
+% Windows 中文字体
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_cjk_font_windows:
+{
+  \setCJKmainfont{SimSun}[
+    AutoFakeBold=2.17, 
+    ItalicFont=KaiTi]
+  \setCJKsansfont{SimHei}
+  \setCJKmonofont{FangSong}
+  \setCJKfamilyfont{zhsong}{SimSun}[AutoFakeBold=2.17]
+  \setCJKfamilyfont{zhhei}{SimHei}
+  \setCJKfamilyfont{zhfs}{FangSong}
+  \setCJKfamilyfont{zhkai}{KaiTi}[AutoFakeBold=2.17]
+  \setCJKfamilyfont{zhnewhei}{Microsoft~YaHei}[
+    BoldFont=Microsoft~YaHei~Bold]
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@@_load_cjk_font_macos:}
+% macOS 字体
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_cjk_font_macos:
+{
+% 移除 does not contain script "CJK" 警告
+\msg_redirect_name:nnn {fontspec} {no-script} {info} 
+\setCJKmainfont{Songti~SC~Light}[
+  BoldFont=Songti~SC~Bold,
+  ItalicFont=Kaiti~SC,
+  BoldItalicFont=Kaiti~SC~Bold]
+\setCJKsansfont{Heiti~SC~Light}[BoldFont=Heiti~SC~Medium]
+\setCJKmonofont{STFangsong}
+\setCJKfamilyfont{zhsong}{Songti~SC~Light}[BoldFont=Songti~SC~Bold]
+\setCJKfamilyfont{zhhei}{Heiti~SC~Light}[BoldFont=Heiti~SC~Medium]
+\setCJKfamilyfont{zhfs}{STFangsong}
+\setCJKfamilyfont{zhkai}{Kaiti~SC}
+  [
+    BoldFont=Kaiti~SC~Bold,      
+    % 参考CTeX手册第9节 LuaLATEX 下的中文支持方式
+    % AlternateFont =
+    %   {
+    %   {⟨character range1⟩} {⟨alternate font name1⟩} 
+    %   {⟨alternate font features2⟩} ,
+    %   ......
+    %   }
+  ]
+\setCJKfamilyfont{zhnewhei}{PingFang~SC}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@@_load_cjk_font_fandol:}
+% Fandol 字体
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_cjk_font_fandol:
+{
+% 移除 does not contain script "CJK" 警告
+\msg_redirect_name:nnn {fontspec} {no-script} {info} 
+\setCJKmainfont{FandolSong-Regular}[
+  Extension=.otf,
+  BoldFont=FandolSong-Bold,
+  ItalicFont=FandolKai-Regular]
+\setCJKsansfont{FandolHei-Regular}[
+  Extension=.otf,
+  BoldFont=FandolHei-Bold]
+\setCJKmonofont{FandolFang-Regular}[Extension=.otf]
+\setCJKfamilyfont{zhsong}{FandolSong-Regular}[
+  Extension=.otf,
+  BoldFont=FandolSong-Bold]
+\setCJKfamilyfont{zhhei}{FandolHei-Regular}[
+  Extension=.otf,
+  BoldFont=FandolHei-Bold]
+\setCJKfamilyfont{zhfs}{FandolFang-Regular}[Extension=.otf]
+\setCJKfamilyfont{zhkai}{FandolKai-Regular}[
+  Extension=.otf,
+  AutoFakeBold=2.17]
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@@_load_cjk_font_founder:}
+%  方正字符集（简繁扩展）
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_cjk_font_founder:
+{
+\setCJKmainfont{FZSSK}[% 方正书宋
+  Extension=.ttf,
+  BoldFont=FZXBSK,% 方正小标宋
+  ItalicFont=FZKTK]% 方正楷体
+\setCJKsansfont{FZXH1K}[% 方正细黑一
+  Extension=.ttf,
+  BoldFont=FZHTK]% FZHTK 方正黑体
+\setCJKmonofont{FZFSK}[Extension=.ttf]% 方正仿宋
+\setCJKfamilyfont{zhsong}
+  {FZSSK}[
+    Extension=.ttf,
+    BoldFont=FZXBSK]
+\setCJKfamilyfont{zhhei}
+  {FZHTK}[
+    Extension=.ttf,
+    AutoFakeBold=2.17]
+\setCJKfamilyfont{zhfs}
+  {FZFSK}[Extension=.ttf]
+\setCJKfamilyfont{zhkai}
+  {FZKTK}[Extension=.ttf]
+\setCJKfamilyfont{zhnewhei}
+  {FZYouHK_508R}[% 方正悠黑508R
+    Extension=.ttf,
+    BoldFont=FZYouHK_511M]% 方正悠黑511M 
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\@@_load_cjk_font_noto:}
+% 思源字体
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_cjk_font_noto:
+{
+% 思源宋体
+\setCJKmainfont[
+  UprightFont=NotoSerifCJKsc-Regular,
+  BoldFont=NotoSerifCJKsc-Bold,
+  ItalicFont=NotoSerifCJKsc-Regular,
+  BoldItalicFont=NotoSerifCJKsc-Bold,
+  ItalicFeatures=FakeSlant,
+  BoldItalicFeatures=FakeSlant]{Noto~Serif~CJK~SC}
+
+% 思源黑体
+\setCJKsansfont[
+  UprightFont=NotoSansCJKsc-Regular,
+  BoldFont=NotoSansCJKsc-Bold,
+  ItalicFont=NotoSansCJKsc-Regular,
+  BoldItalicFont=NotoSansCJKsc-Bold,
+  ItalicFeatures=FakeSlant,
+  BoldItalicFeatures=FakeSlant]{Noto~Sans~CJK~SC}
+
+% 包含于上述思源黑体
+\setCJKmonofont[
+  UprightFont=NotoSansMonoCJKsc-Regular,
+  BoldFont=NotoSansMonoCJKsc-Bold,
+  ItalicFont=NotoSansMonoCJKsc-Regular,
+  BoldItalicFont=NotoSansMonoCJKsc-Bold,
+  ItalicFeatures=FakeSlant,
+  BoldItalicFeatures=FakeSlant]{Noto~Sans~Mono~SC}
+
+\setCJKfamilyfont{zhsong}{Noto~Serif~CJK~SC}
+\setCJKfamilyfont{zhhei}{Noto~Sans~CJK~SC}
+\setCJKfamilyfont{zhfs}{方正仿宋简体}[AutoFakeBold=2.17]
+\setCJKfamilyfont{zhkai}{方正楷体简体}[AutoFakeBold=2.17]
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% 载入设置的字体
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_font:
+{
+  \use:c { @@_load_latin_font_ \g_@@_latin_fontset_tl : }
+  \use:c { @@_load_cjk_font_   \g_@@_cjk_fontset_tl   : }
+  
+  \NewDocumentCommand\songti{}{\CJKfamily{zhsong}}
+  \NewDocumentCommand\heiti{}{\CJKfamily{zhhei}}
+  \NewDocumentCommand\fangsong{}{\CJKfamily{zhfs}}
+  \NewDocumentCommand\kaishu{}{\CJKfamily{zhkai}}
+}
+\@@_load_font:
+%    \end{macrocode}
+%
+% 设置数学字体 (XITS, 或者 STIX, 与 Times New Roman 最为相近)
+%    \begin{macrocode}
+% \setmathfont{STIXTwoMath-Regular}[Extension = .otf]
+\setmathfont{XITSMath-Regular}[
+  BoldFont = XITSMath-Bold,
+  Extension = .otf]
+%    \end{macrocode}
+%
+%
+% \subsection{页面样式}
+%
+% \subsubsection{页眉页脚}
+%
+% Put text here.
+%    \begin{macrocode}
+\RequirePackage{fancyhdr} % 调整页眉页脚
+% 本科生页眉页脚 
+\fancypagestyle{njuplain}{%
+   \fancyhead{}               
+   \fancyfoot[C]{\zihao{5}\thepage} % 页脚居中 五号新罗马体数字
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% TODO: 研究生页眉页脚 
+\fancypagestyle{njuheadings}{%
+   \fancyhead{}               
+   \fancyfoot[C]{\zihao{5}\thepage}        
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+\str_if_eq:NNTF {\l_@@_info_degree_tl} { ug } 
+{
+  % the header line
+  \tl_set:Nn \headrulewidth {0pt}
+  % the footer line
+  \tl_set:Nn \footrulewidth {0pt}
+  
+  \AtBeginDocument{\pagestyle{njuplain}} % 本科无页眉页脚
+}
+{
+  % the header line
+  \tl_set:Nn \headrulewidth {1pt}
+  % the footer line
+  \tl_set:Nn \footrulewidth {0pt}
+
+  % \AtBeginDocument{\pagestyle{njuplain}} % 无页眉页脚
+  \AtBeginDocument{\pagestyle{headings}} % 研究生有页眉页脚
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% ctex格式设置
+% 目录标题 三号宋体加粗
+% 各部分标题 四号黑体
+\ctexset{
+    contentsname = 目录,
+    listfigurename = 插图清单, 
+    listtablename = 表格清单,
+    chapter/format = \zihao{4}\heiti\centering,
+    chapter/beforeskip = 10pt,
+    chapter/afterskip = 60pt,
+    section/format = \zihao{4}\heiti\raggedright,
+    subsection/format = \zihao{4}\heiti\raggedright,
+    subsubsection/format = \zihao{4}\heiti\raggedright
+}
+
+% 重定义目录中章节标题样式
+% 目录内容中章的标题 四号黑体
+% 目录中其他内容 小四号宋体
+\titlecontents{chapter}% 标题级别
+                [5em]% 标题左间距
+                {\heiti\zihao{4}\vspace{10pt}}% 标题格式
+                {\contentslabel{4em}}% 标题标志
+                {\hspace*{-4em}}% 无序号标题
+                {~\titlerule*[0.6pc]{$.$}~\contentspage}% 指引线与页码
+
+                \titlecontents{section}
+                [5em]
+                {\zihao{-4}\vspace{0pt}}
+                {\contentslabel{2.5em}}
+                {\hspace*{-4em}}
+                {~\titlerule*[0.6pc]{$.$}~\contentspage}
+
+\titlecontents{subsection}
+                [8em]
+                {\zihao{-4}\vspace{0pt}}
+                {\contentslabel{3em}}
+                {\hspace*{-4em}}
+                {~\titlerule*[0.6pc]{$.$}~\contentspage}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+\cs_set:Npn \CTEX@addtocline #1#2
+{ 
+  \addcontentsline { toc } {#1} 
+  { \use:c { CTEX@#1@tocline } {#1} {#2} } 
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 目录页面格式修改
+\cs_new:Npn \nju_tocpagestyle:nnn #1 #2 #3
+{
+  \newpage
+  \hspace{0pt}
+  \vskip 10pt
+  \begin{center}
+    \mbox{\songti\bf\zihao{3}{#1}} % 目录页面标题
+    \phantomsection
+    \addcontentsline{toc}{chapter}{#2} % 插入目录
+  \end{center}
+  \vskip 40pt 
+  \@starttoc{#3}%
+  \cleardoublepage
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+\tl_set:Nn \tableofcontents 
+{
+  \nju_tocpagestyle:nnn {目\hspace{2em}录}{\contentsname}{toc}
+}
+\tl_set:Nn \listoffigures
+{
+  \nju_tocpagestyle:nnn {\listfigurename}{\listfigurename}{lof}
+}
+\tl_set:Nn \listoftables 
+{
+  \nju_tocpagestyle:nnn {\listtablename}{\listtablename}{lot}
+}
+%    \end{macrocode}
+%
+% \begin{environment}{preface}
+% Put text here.
+%    \begin{macrocode}
+% 定制前言、致谢环境
+\NewDocumentEnvironment{preface}{}
+{%
+  \chapter*{前言}
+  \addcontentsline{toc}{chapter}{前言}
+}{}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{acknowledgement}
+% 单独制作的致谢页。
+%    \begin{macrocode}
+\NewDocumentEnvironment{acknowledgement}{}
+{%
+  \chapter*{致谢}
+  \addcontentsline{toc}{chapter}{致谢}
+}{}
+%    \end{macrocode}
+% \end{environment}
+%
+% Put text here.
+%    \begin{macrocode}
+% biblatex设置
+\RequirePackage[
+    style=gb7714-2015,
+    %style=numeric-comp,
+    %citestyle=authortitle-icomp,
+    % citestyle=numeric-comp,
+    %bibstyle=authoryear,
+    % bibstyle=numeric,
+    sorting=none,
+    %sorting=nyt,
+    %sortcites=true,
+    %autocite=footnote,
+    backend=biber, % Compile the bibliography with biber
+    hyperref=true,
+    backref=false,
+    citecounter=true,
+    pagetracker=true,
+    citetracker=true,
+    ibidtracker=context,
+    autopunct=true,
+    autocite=plain,
+    % gbpub=false,         % Uncomment if you do NOT want '[S.l. : s.n.]' 
+                           % in reference entries, GitHub Issue (#47)
+    % gbnamefmt=lowercase, % Uncomment if you do NOT want uppercase author 
+                           % names in reference entries, GitHub Issue (#23)
+]{biblatex}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% Remove some unwanted entries from the bibliography
+\AtEveryBibitem{
+	\clearfield{abstract}
+	\clearfield{issn}
+	\clearfield{isbn}
+	\clearfield{archivePrefix}
+	\clearfield{arxivId}
+	\clearfield{pmid}
+	\clearfield{eprint}
+	\ifentrytype{online}{}{\ifentrytype{misc}{}{\clearfield{url}}}
+	% \ifentrytype{book}{\clearfield{doi}}{}
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 修改标签名称
+\crefdefaultlabelformat{#2#1#3\,} % 默认在名称后面添加空格
+
+\crefname{figure}{图}{图}
+\crefname{table}{表}{表}
+% \crefname{equation}{公式}{公式}
+\crefformat{equation}{公式~#2#1#3~} % 删除公式编号的括号
+
+\crefformat{chapter}{第#2#1#3章}
+\crefformat{section}{第~#2#1#3~节}
+\crefformat{subsection}{第~#2#1#3~小节}
+\crefformat{subsubsection}{第~#2#1#3~小节}
+% \crefname{chapter}{§}{§}
+% \crefname{section}{§}{§}
+% \crefname{subsection}{§}{§}
+% \crefname{subsubsection}{§}{§}
+\crefname{appendix}{附录}{附录}
+
+% \crefname{definition}{定义}{定义}
+% \crefname{axiom}{公理}{公理}
+% \crefname{property}{性质}{性质}
+% \crefname{proposition}{命题}{命题}
+% \crefname{lemma}{引理}{引理}
+% \crefname{corollary}{推论}{推论}
+% \crefname{remark}{注解}{注解}
+% \crefname{condition}{条件}{条件}
+% \crefname{conclusion}{结论}{结论}
+% \crefname{assumption}{假设}{假设}
+%    \end{macrocode}
+%
+% soifjsojfosjfos
+%    \begin{macrocode}
+% 图表位置调整
+\floatsetup[lstlisting]{ % Captions for lstlistings
+	capposition=above,%
+	margins=centering,%
+	floatwidth=\textwidth%
+}
+\floatsetup[figure]{ % Captions for figures
+	capposition=bottom,%
+	margins=centering,%
+	floatwidth=\textwidth%
+}
+\floatsetup[table]{ % Captions for tables
+	capposition=above,%
+	margins=centering,%
+	floatwidth=\textwidth%
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 代码样式
+\lstset{
+	basicstyle=\ttfamily\linespread{1}\small\selectfont,
+    keywordstyle=\bfseries,% use bold style for keywords
+    commentstyle=\rmfamily\itshape,% use italic style for comments
+    stringstyle=\ttfamily,% 字符串风格
+    flexiblecolumns,% ?
+    numbers=left,% left-aligned numbering
+    showspaces=false,% hide markers for spaces
+    showstringspaces=false,
+    captionpos=t,% place the caption at the top
+	% frame=lrtb,% show all four sides of the frame
+	% linewidth=.8\textwidth,
+	% breakatwhitespace=true,
+	breaklines=true,
+	xleftmargin=2em,xrightmargin=2em,% set the width of the code environment
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+\lstdefinestyle{LaTeX}{
+  language=TeX,
+  morekeywords={
+    begin, caption, label, mathrm, frac, 
+    toprule, midrule, bottomrule, includegraphics}
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 图表标题样式
+\DeclareCaptionFont{songticap}{\zihao{5}\bf\songti}
+\captionsetup{
+    font=small,%
+    labelfont=songticap,
+	textfont=songticap,
+	strut=no,%
+	hypcap=true, % Links point to the top of the figure
+	% indention=0pt, % Suppress indentation
+	% % parindent=0pt, % Suppress space between paragraphs
+	aboveskip=6pt, % Increase the space between the figure and the caption
+	belowskip=6pt, % Increase the space between the caption and the table
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% list configuration
+\renewcommand{\labelitemi}{\tiny$\blacktriangleright$}
+\renewcommand{\labelitemii}{\textbullet}
+
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
+\setlist[description]{noitemsep}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 数学环境
+\declaretheoremstyle[
+    	%spaceabove=.5\thm@preskip,
+    	%spacebelow=.5\thm@postskip,
+    	headfont=\bf\songti,%\scshape,
+    	notefont=\songti,% notebraces={ (}{)},
+    	bodyfont=\songti,
+    	%headformat={\NAME\space\NUMBER\space\NOTE},
+    	headpunct={},
+    	%postheadspace={.5em plus .1em minus .1em},
+    	%prefoothook={\hfill\qedsymbol}
+    ]{njuthm}
+
+\theoremstyle{njuthm}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+\let\oldproofname=\proofname
+\renewcommand*{\proofname}{\rm\bf\songti{\oldproofname}} % 修改证明环境标题
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+\declaretheorem[
+	name=算法,
+	style=njuthm,
+	refname={算法,算法},
+	Refname={算法,算法},
+	% numberwithin=section,
+]{algorithm}
+\declaretheorem[
+	name=假设,
+	style=njuthm,
+	refname={假设,假设},
+	Refname={假设,假设},
+	% numberwithin=section,
+]{assumption}
+\declaretheorem[
+	name=公理,
+	style=njuthm,
+	refname={公理,公理},
+	Refname={公理,公理},
+	% numberwithin=section,
+]{axiom}
+\declaretheorem[
+	name=结论,
+	style=njuthm,
+	refname={结论,结论},
+	Refname={结论,结论},
+	% numberwithin=section,
+]{conclusion}
+\declaretheorem[
+	name=条件,
+	style=njuthm,
+	refname={条件,条件},
+	Refname={条件,条件},
+	% numberwithin=section,
+]{condition}
+\declaretheorem[
+	name=推论,
+	style=njuthm,
+	refname={推论,推论},
+	Refname={推论,推论},
+	% numberwithin=section,
+]{corollary}
+\declaretheorem[
+	name=定义,
+	style=njuthm,
+	refname={定义,定义},
+	Refname={定义,定义},
+	% numberwithin=section,
+]{definition}
+\declaretheorem[
+    	name=例,
+    	style=njuthm,
+    	refname={例,例},
+    	Refname={例,例},
+    	% numberwithin=section,
+]{example}
+\declaretheorem[
+	name=引理,
+	style=njuthm,
+	refname={引理,引理},
+	Refname={引理,引理},
+	% numberwithin=section,
+]{lemma}
+\declaretheorem[
+	name=性质,
+	style=njuthm,
+	refname={性质,性质},
+	Refname={性质,性质},
+	% numberwithin=section,
+]{property}
+\declaretheorem[
+	name=命题,
+	style=njuthm,
+	refname={命题,命题},
+	Refname={命题,命题},
+	% numberwithin=section,
+]{proposition}
+\declaretheorem[
+	name=注解,
+	style=njuthm,
+	refname={注解,注解},
+	Refname={注解,注解},
+	% numberwithin=section,
+]{remark}
+\declaretheorem[
+	name=定理,
+	style=njuthm,
+	refname={定理,定理},
+	Refname={定理,定理},
+	numberwithin=section,
+]{theorem}
+%    \end{macrocode}
+%
+% \subsection{封面绘制}
+%    \begin{macrocode}
+% 拼合标题
+\tl_const:Nn \l_@@_info_title_tl 
+{
+  \l_@@_info_title_a_tl
+  \l_@@_info_title_b_tl
+  \l_@@_info_title_c_tl
+}
+%    \end{macrocode}
+%
+% 双导师的处理
+%    \begin{macrocode}
+% 拼合导师
+\tl_if_empty:NTF \l_@@_info_supv_b_tl
+{
+  \tl_const:Nn \l_@@_info_supv_full_tl
+  {
+     \l_@@_info_supv_a_tl\hspace{.5em}
+     \l_@@_info_supv_a_title_tl
+  }
+  \tl_const:Nn \l_@@_info_supv_full_tl_en
+  {
+    \l_@@_info_supv_a_en_tl\hspace{.5em}
+    \l_@@_info_supv_a_title_en_tl
+  }
+}
+{ 
+  \tl_const:Nn \l_@@_info_supv_full_tl
+  {
+    \l_@@_info_supv_a_tl\hspace{.5em}
+    \l_@@_info_supv_a_title_tl\hspace{1em}
+    \l_@@_info_supv_b_tl\hspace{.5em}
+    \l_@@_info_supv_b_title_tl
+  }
+  \tl_const:Nn \l_@@_info_supv_full_tl_en
+  {
+    \l_@@_info_supv_a_en_tl\hspace{.5em}
+    \l_@@_info_supv_a_title_en_tl\hspace{1em}
+    \l_@@_info_supv_b_en_tl\hspace{.5em}
+    \l_@@_info_supv_b_title_en_tl
+  }
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 判断学位进行命令定义
+\str_if_eq:NNTF {\l_@@_info_degree_tl} { ug } 
+{
+  % 本科
+  \tl_const:Nn \l_@@_name_diploma_tl { 本\hfill 科\hfill }
+  \tl_const:Nn \c_@@_name_title_tl { 题\hfill 目 }
+  
+  \tl_const:Nn \c_@@_cover_uline_len_a_tl { 250pt }
+  \tl_const:Nn \c_@@_cover_uline_len_b_tl { 90pt }
+  \tl_const:Nn \c_@@_cover_uline_font_tl { \songti }
+  \tl_const:Nn \c_@@_cover_uline_style_tl { \bf }
+  \tl_const:Nn \c_@@_cover_uline_bskip_tl {}
+
+  \tl_const:Nn \c_@@_cover_box_len_tl { 4.2em }
+
+  % 本科强制不打印国家图书馆封面
+  \bool_set_false:N \nju_nl_cover
+} 
+{ 
+  % 本科以外都是研究生 
+  \tl_const:Nn \l_@@_name_diploma_tl { 研\hfill 究\hfill 生\hfill }
+  \tl_const:Nn \c_@@_name_title_tl { 论\hfill 文\hfill 题\hfill 目 }
+
+  \tl_const:Nn \c_@@_cover_uline_len_a_tl { 250pt }
+  \tl_const:Nn \c_@@_cover_uline_len_b_tl { 14em }
+  \tl_const:Nn \c_@@_cover_uline_font_tl { \kaishu }
+  \tl_const:Nn \c_@@_cover_uline_style_tl {}
+  \tl_const:Nn \c_@@_cover_uline_bskip_tl { \hspace{1em} }
+
+  \tl_const:Nn \c_@@_cover_box_len_tl { 6em }
+
+  % 研究生学位分类
+  \str_case_e:nn { \l_@@_info_degree_tl }
+  {
+    { mg } { \tl_const:Nn \c_@@_name_degree_tl { 硕士 } }
+    { mf } { \tl_const:Nn \c_@@_name_degree_tl { 硕士专业 } }
+    { phd } { \tl_const:Nn \c_@@_name_degree_tl { 博士 } }
+  }
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\@@_cover_uline_a:n}
+% 在封面绘制下划线
+%    \begin{macrocode}
+\cs_new:Npn \@@_cover_uline_a:n #1
+{
+  \uline{\makebox[\c_@@_cover_uline_len_a_tl]
+    {\rm\c_@@_cover_uline_font_tl #1 }}
+}
+\cs_new:Npn \@@_cover_uline_b:n #1
+{
+  \uline{\makebox[\c_@@_cover_uline_len_b_tl]
+    {\rm\c_@@_cover_uline_font_tl #1 }}
+}
+\cs_new:Npn \@@_cover_uline_nl:nn #1 #2
+{
+  \uline{\makebox[#1]
+    {\rm\c_@@_cover_uline_font_tl #2 }}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Put text here.
+%    \begin{macrocode}
+% 封面表格边框
+\cs_new:Npn \@@_cover_box:n #1 
+{
+  \makebox[\c_@@_cover_box_len_tl][s]{
+    #1\c_@@_cover_uline_bskip_tl}
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 判断类型
+\str_if_eq:NNTF { \l_@@_info_type_tl } { thesis } 
+{
+  \tl_const:Nn \l_@@_info_type_tl_name 
+    { \l_@@_name_diploma_tl 毕\hfill 业\hfill 论\hfill 文 }
+}
+{
+  \tl_const:Nn \l_@@_info_type_tl_name 
+    { \l_@@_name_diploma_tl 毕\hfill 业\hfill 设\hfill 计 }
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\@@_cover_title_breakline:}
+% 对多行标题进行自动判断，并输出换行后的结果
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_title_breakline:
+{
+  \@@_cover_box:n {\c_@@_name_title_tl}
+  & \@@_cover_uline_a:n 
+  { \c_@@_cover_uline_style_tl \l_@@_info_title_a_tl } \\
+  % 如果某行标题空则不输出接下来的若干行
+  \tl_if_empty:NF \l_@@_info_title_b_tl
+  {
+    \tl_if_empty:NTF \l_@@_info_title_c_tl
+      { 
+        & \@@_cover_uline_a:n  
+        {\c_@@_cover_uline_style_tl \l_@@_info_title_b_tl } \\ 
+      }
+      {
+        & \@@_cover_uline_a:n  
+        { \c_@@_cover_uline_style_tl \l_@@_info_title_b_tl } \\
+        & \@@_cover_uline_a:n  
+        { \c_@@_cover_uline_style_tl \l_@@_info_title_c_tl } \\
+      }
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Put text here.
+% 封面信息栏 本科
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_print_covertab:
+{%
+  \str_if_eq:NNTF { \l_@@_info_degree_tl } { ug } 
+  {
+    \begin{tabular}{p{4.2em}c}
+      \@@_cover_box:n {院\hfill 系}
+      & \@@_cover_uline_a:n  {\l_@@_info_dept_tl} \\
+      \@@_cover_box:n {专\hfill 业}
+      & \@@_cover_uline_a:n  {\l_@@_major_tl} \\
+      \@@_cover_title_breakline:
+    \end{tabular}\\
+  
+    \begin{tabular}{p{4.2em}cp{4.2em}c}
+      \@@_cover_box:n {年\hfill 级}
+      & \@@_cover_uline_b:n {\l_@@_info_grade_tl}
+      & \@@_cover_box:n {学\hfill 号}
+      & \@@_cover_uline_b:n {\l_@@_info_id_tl}\\
+    \end{tabular}\\
+    
+    \begin{tabular}{p{4.2em}c}
+      \@@_cover_box:n {学\hfill 生\hfill 姓\hfill 名}
+      & \@@_cover_uline_a:n  {\l_@@_info_author_tl}
+    \end{tabular}\\
+    \begin{tabular}{p{4.2em}cp{4.2em}c}
+      \@@_cover_box:n {导\hfill 师}
+      & \@@_cover_uline_b:n {\l_@@_info_supv_a_tl}
+      & \@@_cover_box:n {职\hfill 称}
+      & \@@_cover_uline_b:n {\l_@@_info_supv_a_title_tl}\\
+  
+      % 第二导师
+      \tl_if_empty:NF \l_@@_info_supv_b_tl
+      {
+        \@@_cover_box:n {第\hfill 二\hfill 导\hfill 师}
+        & \@@_cover_uline_b:n {\l_@@_info_supv_b_tl}
+        & \@@_cover_box:n {职\hfill 称}
+        & \@@_cover_uline_b:n {\l_@@_info_supv_b_title_tl}\\
+      }
+    \end{tabular}\\
+  
+    \begin{tabular}{p{4.2em}c}
+      \@@_cover_box:n {提\hfill 交\hfill 日\hfill 期}
+      & \@@_cover_uline_a:n  {\l_@@_submit_date_tl}\\
+    \end{tabular}  
+  } 
+  { 
+    \begin{tabular}{p{6em}c}    
+      \@@_cover_title_breakline:
+      \@@_cover_box:n {作\hfill 者\hfill 姓\hfill 名}
+      & \@@_cover_uline_a:n  {\l_@@_info_author_tl}\\
+      \@@_cover_box:n {专\hfill 业\hfill 名\hfill 称}
+      & \@@_cover_uline_a:n  {\l_@@_major_tl}\\
+      \@@_cover_box:n {研\hfill 究\hfill 方\hfill 向}
+      & \@@_cover_uline_a:n  {\l_@@_field_tl}\\
+      \@@_cover_box:n {指\hfill 导\hfill 教\hfill 师}
+      & \@@_cover_uline_a:n  {\l_@@_info_supv_full_tl}\\
+    \end{tabular}
+  } 
+}
+%    \end{macrocode}
+%
+% Put text here.
+%
+% Put text here.
+%    \begin{macrocode}
+% 绘制封面命令
+\tl_new:N \nju_printcover_nl % 国家图书馆封面
+\tl_new:N \nju_printcover_ug % 本科封面
+\tl_new:N \nju_printcover_g % 研究生封面
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 按需绘制国家图书馆封面，修改自旧模板
+\bool_if:NT \nju_nl_cover
+{
+  \tl_set:Nn \nju_printcover_nl 
+  {
+    \thispagestyle{empty}
+    \pdfbookmark[0]{国家图书馆封面}{nl}
+    {
+      % 顶端
+      \hspace{0mm}
+      \vskip -20mm \hskip -15mm
+      \songti\zihao{-4}
+      \makebox[40pt][l]{分类号}
+      \@@_cover_uline_b:n {\l_@@_info_classif_tl}
+      \hfill
+      \makebox[40pt][l]{密级}
+      \@@_cover_uline_b:n {\l_@@_info_seclv_tl}
+      \vskip 10pt \hskip -15mm
+      \makebox[40pt][l]{UDC}
+      \@@_cover_uline_b:n {\l_@@_info_udc_tl}
+    }
+  
+    % 中部
+    \vskip\stretch{2}
+    \begin{center}
+      \def\ULthickness{1pt}
+      {\kaishu\zihao{-0} 学\hspace{0.5em}位\hspace{0.5em}论\hspace{0.5em}文}
+      {
+        \kaishu\zihao{1}
+        \vskip \stretch{1}
+        \@@_cover_uline_b:n {\l_@@_info_title_a_tl}\\
+        \@@_cover_uline_b:n {\l_@@_info_title_b_tl}\\
+        \@@_cover_uline_b:n {\l_@@_info_title_c_tl}\\
+      }
+      \vskip \stretch{1}
+      {\kaishu\zihao{4}（题名和副题名）}
+      \vskip \stretch{1} \vskip 5mm
+      {\kaishu\zihao{1}\uline{\makebox{\l_@@_info_author_tl}}}
+      \vskip \stretch{1}
+      {\kaishu\zihao{4}（作者姓名）}
+    \end{center}
+  
+    % 底部
+    \vskip\stretch{1}
+    {
+      \kaishu\zihao{4}
+      \noindent 指导教师姓名、职务、职称、学位、单位名称及地址%
+      \@@_cover_uline_nl:nn {94pt}{\l_@@_info_supv_a_tl}\par
+      \noindent\@@_cover_uline_nl:nn {\textwidth}{%
+      \l_@@_info_supv_cont_tl}\par
+      \noindent 申请学位级别%
+      \@@_cover_uline_nl:nn {9em}{\c_@@_name_degree_tl}%
+      \noindent 专业名称%
+      \uline{\hfill\l_@@_major_tl\hfill}\par% 需要调整下划线长度
+      \noindent 论文提交日期%
+      \@@_cover_uline_nl:nn {9em}{\l_@@_submit_date_tl}%
+      论文答辩日期%
+      \uline{\hfill\l_@@_defend_date_tl\hfill}\par% 需要调整下划线长度
+      \noindent 学位授予单位和日期\uline{\hfill}\par
+      \noindent\hfill 答辩委员会主席：%
+      \@@_cover_uline_nl:nn {9em}{\l_@@_info_chairman_tl}\par
+      \noindent\hfill 评阅人：%
+      \@@_cover_uline_nl:nn {9em}{\l_@@_info_reviewer_a_tl}\par
+      \noindent\hfill\@@_cover_uline_nl:nn {9em}{\l_@@_info_reviewer_b_tl}\par
+      \noindent\hfill\@@_cover_uline_nl:nn {9em}{\l_@@_info_reviewer_c_tl}\par
+      \noindent\hfill\@@_cover_uline_nl:nn {9em}{\l_@@_info_reviewer_d_tl}\par
+      
+      \begin{center}
+        \kaishu\zihao{3}\hspace{2em} 年\hspace{1em} 月\hspace{1em} 日
+      \end{center}
+      \vskip -10mm
+      }
+    \cleardoublepage
+  }
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 本科封面
+\tl_set:Nn \nju_printcover_ug 
+{
+  \thispagestyle{empty}
+  \pagenumbering{Roman}
+  % Start
+  \pdfbookmark{封面}{封面} % 将封面插入pdf书签
+  \begin{spacing}{1.25}
+  \vskip 0mm
+  \hspace{-10mm}
+  \includegraphics[height=3cm]{njulogo}\smallskip 
+  \begin{center}
+    \includegraphics[height=3.35cm]{njuname}
+    \vskip 10mm 
+    {\zihao{1}\makebox[9em][s]{\bf{\songti\l_@@_info_type_tl_name}}}
+    \vfill
+    \vskip\stretch{0}
+    {\bgroup
+    \kaishu\zihao{3}
+    \def\tabcolsep{1pt}
+    \def\arraystretch{1.5}
+    % 绘制信息框
+    \@@_print_covertab: 
+    \egroup}
+    \vfill
+  \end{center}
+  \end{spacing}
+  \cleardoublepage
+  % \vfill
+  % \newpage
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 研究生封面
+\tl_set:Nn \nju_printcover_g 
+{
+  \thispagestyle{empty}
+  \pagenumbering{Roman}
+  % Start
+  \pdfbookmark{封面}{封面} % 将封面插入pdf书签
+  \begin{spacing}{1.25}
+  \begin{center}
+    \hspace{0pt} \vskip 5mm
+    \includegraphics[height=1.9cm]{njulogo}
+    \vskip 10mm 
+    \includegraphics[height=2cm]{njuname-large}
+    \vskip 15mm 
+    {\zihao{1}\makebox[10em][s]{\bf{\kaishu\l_@@_info_type_tl_name}}}
+    \vskip 5mm
+    {\zihao{1}\bf{\kaishu{（申请\c_@@_name_degree_tl 学位）}}}
+    \par\vfill
+    \vskip\stretch{0}
+    {\bgroup
+    \bf\kaishu\zihao{3}
+    \def\tabcolsep{1pt}
+    \def\arraystretch{1.5}
+    \vskip 10mm
+    % 绘制信息框
+    \@@_print_covertab:
+    \egroup}
+    \vfill
+    \vskip 10mm
+    \bf\kaishu\zihao{4}\l_@@_submit_date_tl
+    \vskip 15mm
+  \end{center}
+  \end{spacing}
+
+  \newpage % 封面背面
+  \thispagestyle{empty}
+  \begin{spacing}{1.625}
+    % TODO: 等待调整格式
+    \hspace{0pt} \vfill
+    {\bgroup
+    \kaishu\zihao{3}
+    \makebox[6em][s]{\bf\kaishu 学\hfill 号}：\MakeUppercase{\l_@@_info_id_tl}
+    \par
+    \makebox[6em][s]{\bf\kaishu 论文答辩日期}：\l_@@_defend_date_tl
+    \par
+    \makebox[6em][s]{\bf\kaishu 指\hfill 导\hfill 教\hfill 师}：\hspace{50mm}（签字）
+    \par
+    \egroup}
+    \vskip 15mm
+  \end{spacing}
+  \cleardoublepage
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+% 重定义maketitle生成封面
+\tl_set:Nn \maketitle 
+{%
+  \str_if_eq:NNTF { \l_@@_info_degree_tl } { ug } 
+  {
+    \nju_printcover_nl % 国家图书馆封面
+    \nju_printcover_ug % 本科封面
+  } 
+  { 
+    \nju_printcover_nl % 国家图书馆封面
+    \nju_printcover_g % 研究生封面 
+  } 
+}
+%    \end{macrocode}
+%
+% \subsection{摘要绘制}
+%
+%    \begin{macrocode}
+% 判断学位
+\str_if_eq:NNTF {\l_@@_info_degree_tl} { ug } 
+{   
+  % 本科摘要环境
+  \NewDocumentEnvironment{abstract} {}
+  {%
+    % \pagestyle{plain}
+    % \pagenumbering{Roman}
+    % \phantomsection\addcontentsline{toc}{chapter}{中文摘要} % 将摘要插入目录和pdf书签
+    \pdfbookmark[0]{中文摘要}{中文摘要} % 将摘要插入pdf书签，与上一行不可共存
+    \begin{center}
+      \kaishu\zihao{-2}{\textbf{\uuline{
+        南京大学本科生毕业论文（设计、作品）中文摘要}}}
+    \end{center}
+    {\bgroup
+      \kaishu\zihao{-4}
+      \tl_set:Nn \tabcolsep {0pt}
+      \tl_set:Nn \arraystretch {0.8}
+      \noindent
+      题目： \l_@@_info_title_tl \\
+      院系： \l_@@_info_dept_tl \\
+      专业： \l_@@_major_tl \\
+      本科生姓名： \l_@@_info_author_tl \\
+      指导教师（姓名、职称）：\l_@@_info_supv_full_tl \\
+      摘要：
+      \egroup
+    }
+    \kaishu\zihao{-4}\par%
+  }{%
+  \newpage
+  }
+
+  % 中文关键词
+  \NewDocumentCommand \keywords {m} {%
+    \par\vspace{2ex}\noindent%
+    {\kaishu\zihao{-4}\makebox[4em][s]{关键词{：}}}~{#1}%
+  }
+
+  % 英文摘要
+  \NewDocumentEnvironment{englishabstract} {}
+  {%
+    \pagestyle{plain}
+    % \phantomsection\addcontentsline{toc}{chapter}{英文摘要} % 将摘要插入目录和pdf书签
+    \pdfbookmark[0]{英文摘要}{英文摘要} % 将摘要插入pdf书签，与上一行不可共存
+    \begin{center}
+        \kaishu\zihao{-2}{\textbf{\uuline{
+          南京大学本科生毕业论文（设计、作品）英文摘要}}}
+    \end{center}
+    {
+      \bgroup
+      THESIS: ~~\l_@@_info_title_en_tl \\
+      DEPARTMENT: ~~\l_@@_info_dept_en_tl \\
+      SPECIALIZATION: ~~\l_@@_major_en_tl \\
+      UNDERGRADUATE:~~\l_@@_info_author_en_tl \\
+      MENTOR:~~\l_@@_info_supv_full_tl_en \\
+      ABSTRACT:
+      \egroup
+    }
+    \zihao{-4}\par%
+  }{%
+  \cleardoublepage
+  \newpage
+  }
+
+  % 英文关键词
+  \NewDocumentCommand \englishkeywords {m} {%
+    \par\vspace{2ex}\noindent%
+    {KEYWORDS{:}}~~{#1}%
+  }
+}
+%    \end{macrocode}
+%
+% Put text here.
+%    \begin{macrocode}
+{ 
+  % 研究生摘要环境
+  \NewDocumentEnvironment{abstract} {}
+  {%
+    \pagestyle{plain}
+    \pagenumbering{Roman}
+    % \phantomsection\addcontentsline{toc}{chapter}{中文摘要} % 将摘要插入目录和pdf书签
+    \pdfbookmark[0]{中文摘要}{中文摘要} % 将摘要插入pdf书签，与上一行不可共存
+    \begin{center}
+      \kaishu\zihao{-2}{\textbf{\uuline{
+        南京大学研究生毕业论文中文摘要首页用纸}}}
+    \end{center}
+    
+    \bgroup
+    \kaishu\zihao{4}
+    \tl_set:Nn \tabcolsep {0pt}
+    \tl_set:Nn \arraystretch {0.8}
+    \noindent
+    毕业论文题目：\hspace{0.5em}\nju_underline:n {\l_@@_info_title_tl\hfill}\\    
+    \uline{\makebox[9em]{\l_@@_major_tl}}专业
+    \uline{\makebox[4em]{\l_@@_info_grade_tl}}级
+    \str_if_eq:NNTF {\l_@@_info_degree_tl} { phd } {博}{硕}
+    士生姓名：\uline{\hfill\l_@@_info_author_tl\hfill} \\
+    指导教师（姓名、职称）：\uline{\hfill\l_@@_info_supv_full_tl\hfill}\par
+    \egroup
+  
+    \kaishu\zihao{4}\par%
+  }{%
+  \newpage
+  }
+  
+  % 中文关键词
+  \NewDocumentCommand \keywords {m} {%
+    \par\vspace{2ex}\noindent%
+    {\kaishu\zihao{4}\makebox[4em][s]{关键词{：}}}~{#1}%
+  }
+  
+  % 英文摘要
+  \NewDocumentEnvironment{englishabstract} {}
+  {%
+    \pagestyle{plain}
+    % \phantomsection\addcontentsline{toc}{chapter}{英文摘要} % 将摘要插入目录和pdf书签
+    \pdfbookmark[0]{英文摘要}{英文摘要} % 将摘要插入pdf书签，与上一行不可共存
+    \begin{center}
+        \kaishu\zihao{-2}{\textbf{\uuline{
+          南京大学研究生毕业论文英文摘要首页用纸}}}
+    \end{center}
+    {
+      \bgroup
+      \zihao{4}
+      THESIS: ~~\l_@@_info_title_en_tl \\
+      SPECIALIZATION: ~~\l_@@_major_en_tl \\
+      POSTGRADUATE:~~\l_@@_info_author_en_tl \\
+      MENTOR:~~\l_@@_info_supv_full_tl_en\par
+      \egroup
+    }
+    \zihao{4}\par%
+  }{%
+  \cleardoublepage
+  \newpage
+  }
+  
+  % 英文关键词
+  \NewDocumentCommand \englishkeywords {m} {%
+    \par\vspace{2ex}\noindent%
+    {KEYWORDS{:}}~~{#1}%
+  }
+}
+%</class>
+%    \end{macrocode}
+%
+%
+%
+%
+% \end{implementation}
+%
+% \PrintIndex

@@ -12,63 +12,18 @@ jobs:
       - name: Compile basic LaTeX document
         uses: ./
         with:
-          root_file: test.tex
+          root_file: test.dtx
           working_directory: test/
-      - name: Compile LaTeX document with pre/post compile actions
-        uses: ./
-        with:
-          root_file: test.tex
-          working_directory: test/
-          pre_compile: |
-            rm test.pdf
-          post_compile: |
-            ls test.pdf
-      - name: Compile multiple LaTeX documents
-        uses: ./
-        with:
-          root_file: |
-            file1.tex
-            file2.tex
-          working_directory: test/
-      - name: Compile LaTeX document with math symbols
-        uses: ./
-        with:
-          root_file: math.tex
-          working_directory: test/
-      - name: Compile LaTeX document with biblatex/biber
-        uses: ./
-        with:
-          root_file: biblatex.tex
-          working_directory: test/
-      - name: Compile LaTeX document with eps figure
-        uses: ./
-        with:
-          root_file: eps.tex
-          working_directory: test/
-      - name: Compile LaTeX document with minted and lualatex
-        uses: ./
-        with:
-          root_file: minted.tex
-          working_directory: test/
-          latexmk_shell_escape: true
-          latexmk_use_lualatex: true
-      - name: Compile LaTeX document with arara and graphviz
-        uses: ./
-        with:
-          root_file: graphviz.tex
-          working_directory: test/
-          compiler: arara
-          args: "--verbose"
       # https://github.com/xu-cheng/latex-action/issues/16
       - name: Test Action with Github Default Template
         uses: ./
         with:
           # The root LaTeX file to be compiled
-          root_file: test/test.tex
+          root_file: test/test.dtx
           # The working directory for the LaTeX engine
           working_directory: # optional
           # The LaTeX engine to be invoked
-          compiler: # optional, default is latexmk
+          engine: # optional, default is latexmk
           # Extra arguments to be passed to the LaTeX engine
           args: # optional, default is -pdf -file-line-error -halt-on-error -interaction=nonstopmode
           # [Deprecated] Install extra packages by tlmgr
@@ -80,22 +35,10 @@ jobs:
           # Arbitrary bash codes to be executed after compiling LaTeX documents
           post_compile: # optional
           # Instruct latexmk to enable --shell-escape
-          latexmk_shell_escape: # optional
-          # Instruct latexmk to use LuaLaTeX
-          latexmk_use_lualatex: # optional
-          # Instruct latexmk to use XeLaTeX
-          latexmk_use_xelatex: # optional
+          shell_escape: # optional
       - name: Check pdf files
         run: |
-          file test/test.pdf | grep -q ' PDF '
-          file test/file1.pdf | grep -q ' PDF '
-          file test/file2.pdf | grep -q ' PDF '
-          file test/math.pdf | grep -q ' PDF '
-          file test/biblatex.pdf | grep -q ' PDF '
-          file test/eps.pdf | grep -q ' PDF '
-          file test/minted.pdf | grep -q ' PDF '
-          file test/graphviz.pdf | grep -q ' PDF '
-          file test/abc.pdf | grep -q ' PDF '
+          file test/test.cls | grep -q ' text '
       - name: Upload
         uses: actions/upload-artifact@master
         with:

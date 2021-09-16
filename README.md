@@ -10,7 +10,7 @@ APIs are the same. The following docs are copied from the origin repo.
 
     The root LaTeX file to be compiled. This input is required. You can also pass multiple files as a multi-line string to compile multiple documents. For example:
     ```yaml
-    - uses: HermitSun/latex-action@v3
+    - uses: FengChendian/latex-dtx2cls-action@v2
       with:
         root_file: |
           file1.tex

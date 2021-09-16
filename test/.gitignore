@@ -16,6 +16,10 @@
 *.cb2
 .*.lb
 
+*.cls
+*.md
+*.ins
+
 ## Intermediate documents:
 *.dvi
 *.xdv
