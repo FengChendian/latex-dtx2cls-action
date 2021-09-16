@@ -65,7 +65,7 @@ fi
 
 info "Compile $root_file"
 
-"$engine" "${args[@]}" "$working_directory$root_file"
+"$engine" "${args[@]}" "$root_file"
 
 cd -
 
