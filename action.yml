@@ -9,7 +9,7 @@ inputs:
     description: The working directory for the LaTeX engine
   engine:
     description: The LaTeX engine to be invoked
-    default: latexmk
+    default: xetex
   args:
     description: Extra arguments to be passed to the LaTeX engine
     default: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
@@ -22,7 +22,7 @@ inputs:
   post_compile:
     description: Arbitrary bash codes to be executed after compiling LaTeX documents
   shell_escape:
-    description: Instruct latexmk to enable --shell-escape
+    description: Instruct xetex to enable --shell-escape
 runs:
   using: docker
   image: Dockerfile
