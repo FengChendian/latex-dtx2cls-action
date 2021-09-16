@@ -16,7 +16,7 @@ jobs:
           working_directory: test/
       - name: Check cls files
         run: |
-          file test/test.cls | grep -q ' text '
+          file test/test.cls | grep -q 'text'
       - name: Upload
         uses: actions/upload-artifact@master
         with:

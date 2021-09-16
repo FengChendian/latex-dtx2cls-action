@@ -1,33 +1,31 @@
 # latex-action
 
-Forked from [xu-cheng/latex-action](https://github.com/xu-cheng/latex-action) and added some zh_CN support.
+Forked from [xu-cheng/latex-action](https://github.com/HermitSun/latex-action) and changed to dtx2cls support.
 
-APIs are the same. The following docs are copied from the origin repo.
+APIs are the differrent.
 
 ## Inputs
 
 * `root_file`
 
     The root LaTeX file to be compiled. This input is required. You can also pass multiple files as a multi-line string to compile multiple documents. For example:
+
     ```yaml
     - uses: FengChendian/latex-dtx2cls-action@v4
       with:
-        root_file: |
-          file1.tex
-          file2.tex
+        root_file: file.cls
     ```
+
+    > Don't add directory in `root_file`, because xetex can't find file except for `./` in current director. Instead of 
+    it, you can use working_directory.
 
 * `working_directory`
 
     The working directory for the LaTeX engine.
 
-* `compiler`
+* `engine`
 
     The LaTeX engine to be invoked. By default, [`latexmk`](https://ctan.org/pkg/latexmk) is used, which automates the process of generating LaTeX documents by issuing the appropriate sequence of commands to be run.
-
-* `args`
-
-    The extra arguments to be passed to the LaTeX engine. By default, it is `-pdf -file-line-error -halt-on-error -interaction=nonstopmode`. This tells `latexmk` to use `pdflatex`. Refer to [`latexmk` document](http://texdoc.net/texmf-dist/doc/support/latexmk/latexmk.pdf) for more information.
 
 * `extra_system_packages`
 
@@ -41,20 +39,6 @@ APIs are the same. The following docs are copied from the origin repo.
 
     Arbitrary bash codes to be executed after compiling LaTeX documents. For example, `post_compile: "latexmk -c"` to clean up temporary files.
 
-**The following inputs are only valid if the input `compiler` is not changed.**
-
-* `latexmk_shell_escape`
-
-    Instruct `latexmk` to enable `--shell-escape`.
-
-* `latexmk_use_lualatex`
-
-    Instruct `latexmk` to use LuaLaTeX.
-
-* `latexmk_use_xelatex`
-
-    Instruct `latexmk` to use XeLaTeX.
-
 ## Example
 
 ```yaml
@@ -67,54 +51,33 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
       - name: Compile LaTeX document
-        uses: HermitSun/latex-action@v3
+        uses: FengChendian/latex-action@v4
         with:
-          root_file: main.tex
+          root_file: main.dtx
 ```
 
 ## FAQs
-
-### How to use XeLaTeX or LuaLaTeX instead of pdfLaTeX?
-
-By default, this action uses pdfLaTeX. If you want to use XeLaTeX or LuaLaTeX, you can set the `latexmk_use_xelatex` or `latexmk_use_lualatex` input respectively. For example:
-
-```yaml
-- uses: HermitSun/latex-action@v3
-  with:
-    root_file: main.tex
-    latexmk_use_xelatex: true
-```
-
-```yaml
-- uses: HermitSun/latex-action@v3
-  with:
-    root_file: main.tex
-    latexmk_use_lualatex: true
-```
-
-Alternatively, you could create a `.latexmkrc` file. Refer to the [`latexmk` document](http://texdoc.net/texmf-dist/doc/support/latexmk/latexmk.pdf) for more information.
 
 ### How to enable `--shell-escape`?
 
 To enable `--shell-escape`, set the `latexmk_shell_escape` input.
 
 ```yaml
-- uses: HermitSun/latex-action@v3
+- uses: FengChendian/latex-action@v4
   with:
-    root_file: main.tex
-    latexmk_shell_escape: true
+    root_file: main.dtx
 ```
 
-### Where is the PDF file? How to upload it?
+### Where is the cls file? How to upload it?
 
-The PDF file will be in the same folder as that of the LaTeX source in the CI environment. It is up to you on whether to upload it to some places. Here are some example.
+The cls file will be in the same folder as that of the LaTeX source in the CI environment. It is up to you on whether to upload it to some places. Here are some example.
 * You can use [`@actions/upload-artifact`](https://github.com/actions/upload-artifact) to upload PDF file to the workflow tab. For example you can add
 
   ```yaml
   - uses: actions/upload-artifact@v2
     with:
-      name: PDF
-      path: main.pdf
+      name: cls
+      path: main.cls
   ```
 
 * You can use [`@softprops/action-gh-release`](https://github.com/softprops/action-gh-release) to upload PDF file to the Github Release.
