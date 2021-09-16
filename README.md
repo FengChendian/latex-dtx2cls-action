@@ -13,7 +13,7 @@ APIs are the differrent.
     ```yaml
     - uses: FengChendian/latex-dtx2cls-action@v4
       with:
-        root_file: file.cls
+        root_file: file.dtx
     ```
 
     > Don't add directory in `root_file`, because xetex can't find file except for `./` in current director. Instead of 
