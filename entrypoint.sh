@@ -30,7 +30,7 @@ if [[ -z "$root_file" ]]; then
 fi
 
 if [[ -z "$engine" && -z "$args" ]]; then
-  warn "Input 'engine' and 'args' are both empty. Reset them to default values."
+  info "Input 'engine' and 'args' are both empty. Reset them to default values."
   engine="xetex"
   args="-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 fi
