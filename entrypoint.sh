@@ -29,6 +29,10 @@ if [[ -z "$root_file" ]]; then
   error "Input 'root_file' is missing."
 fi
 
+if [[ -z "$working_directory" ]]; then
+  working_directory = "./"
+fi
+
 if [[ -z "$engine" && -z "$args" ]]; then
   info "Input 'engine' and 'args' are both empty. Reset them to default values."
   engine="xetex"
