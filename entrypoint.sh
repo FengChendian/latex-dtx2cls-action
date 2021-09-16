@@ -55,7 +55,7 @@ if [[ -n "$working_directory" ]]; then
   if [[ ! -d "$working_directory" ]]; then
     mkdir -p "$working_directory"
   fi
-  cd "$working_directory"
+  # cd "$working_directory"
 fi
 
 if [[ -n "$pre_compile" ]]; then
@@ -74,7 +74,7 @@ while IFS= read -r f; do
     error "File '$f' cannot be found from the directory '$PWD'."
   fi
 
-  "$engine" "${args[@]}" "$f"
+  "$engine" "${args[@]}" "$working_directory$f"
 done <<< "$root_file"
 
 if [[ -n "$post_compile" ]]; then
