@@ -32,7 +32,6 @@ fi
 if [[ -z "$engine" && -z "$args" ]]; then
   info "Input 'engine' and 'args' are both empty. Reset them to default values."
   engine="xetex"
-  args="-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 fi
 
 IFS=' ' read -r -a args <<< "$args"
