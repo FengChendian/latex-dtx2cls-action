@@ -63,19 +63,9 @@ if [[ -n "$pre_compile" ]]; then
   eval "$pre_compile"
 fi
 
-while IFS= read -r f; do
-  if [[ -z "$f" ]]; then
-    continue
-  fi
+info "Compile $root_file"
 
-  info "Compile $f"
-
-  if [[ ! -f "$f" ]]; then
-    error "File '$f' cannot be found from the directory '$PWD'."
-  fi
-
-  "$engine" "${args[@]}" "$working_directory$f"
-done <<< "$root_file"
+"$engine" "${args[@]}" "$working_directory$root_file"
 
 if [[ -n "$post_compile" ]]; then
   info "Run post compile commands"
